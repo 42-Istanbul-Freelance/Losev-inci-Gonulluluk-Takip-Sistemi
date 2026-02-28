@@ -69,7 +69,7 @@ export default function Home() {
       {/* ====================== NAVBAR ====================== */}
       <nav className="relative z-50 px-6 py-4">
         <div className="flex items-center justify-between max-w-7xl mx-auto">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <Image
               src="/losev-logo.png"
               alt="LÖSEV Logo"
@@ -77,6 +77,14 @@ export default function Home() {
               height={44}
               className="object-contain"
             />
+            <div className="flex items-end mt-2 ml-2">
+              <span className="text-[1.8rem] xl:text-[2rem] font-black text-[#E30613] tracking-tighter leading-none" style={{ fontFamily: 'Arial, sans-serif' }}>
+                İN
+              </span>
+              <span className="text-[1.8rem] xl:text-[2rem] font-black text-black tracking-tighter leading-none" style={{ fontFamily: 'Arial, sans-serif' }}>
+                Cİ
+              </span>
+            </div>
           </div>
           <div className="flex items-center gap-3">
             <Link
@@ -104,11 +112,6 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: text */}
           <div className="animate-fade-in-up">
-            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary-50 to-blue-50 border border-primary-100 px-4 py-1.5 text-sm font-medium text-primary-700 mb-6">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-              LÖSEV İnci Gönüllülük Takip Sistemi
-            </div>
-
             <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.1] tracking-tight text-gray-900">
               Küçük Eller,
               <br />
@@ -225,24 +228,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ====================== LOSEV INCI BANNER ====================== */}
-      <section className="py-12 bg-gradient-to-r from-primary-50 via-blue-50 to-purple-50">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="relative rounded-2xl bg-white/80 backdrop-blur border border-primary-100 p-8 md:p-10 flex flex-col md:flex-row items-center gap-6 shadow-sm">
-            <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-blue-600 flex items-center justify-center shadow-lg">
-              <span className="text-3xl">💎</span>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-1">LÖSEV İncileri Projesi</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Geleceğin duyarlı bireylerini yetiştirmek için küçük yaşlardan itibaren çocuklara ve gençlere
-                dokunan uzun soluklu bir iyilik yolculuğu. LÖSEV İnci öğrencileri, gönüllülük çalışmalarıyla
-                topluma değer katıyor.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ====================== HOW IT WORKS ====================== */}
       <section className="py-20 lg:py-28 bg-gray-50">
