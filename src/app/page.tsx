@@ -118,8 +118,8 @@ export default function Home() {
             </h1>
 
             <p className="mt-6 text-lg text-gray-600 leading-relaxed max-w-xl">
-              LÖSEV İnci öğrencileri, gönüllülük çalışmalarıyla topluma umut oluyor.
-              Bu platform ile her bir gönüllülük saatini kaydet, öğretmen onayıyla belgele
+              LÖSEV&apos;in gücü, gönüllülerinin yüreğinde saklıdır. İnci öğrencileri olarak
+              her bir gönüllülük saatini kaydet, öğretmen onayıyla belgele
               ve dijital sertifikanı kazan.
             </p>
 
@@ -151,45 +151,45 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right: illustration */}
+          {/* Right: image collage */}
           <div className="relative hidden lg:flex items-center justify-center">
-            <div className="relative w-full max-w-md aspect-square">
-              {/* Big circle background */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-100 via-blue-50 to-purple-50 animate-pulse-soft" />
+            <div className="relative w-full max-w-lg">
+              {/* Main image */}
+              <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl shadow-primary-900/20 rotate-1 hover:rotate-0 transition-transform duration-500">
+                <img
+                  src="https://newpageapi.losev.org.tr/losev/slider/1e4839b7-31e3-4c61-b163-7ca422530133.jpg"
+                  alt="LÖSEV gönüllülük çalışması"
+                  className="w-full h-[340px] object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+              </div>
 
-              {/* Floating decorative elements */}
-              <div className="absolute top-4 right-8 animate-float">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-400 to-pink-500 shadow-lg shadow-rose-400/30 flex items-center justify-center">
-                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" /></svg>
+              {/* Secondary image - offset */}
+              <div className="absolute -bottom-8 -left-8 z-20 rounded-2xl overflow-hidden shadow-xl -rotate-3 hover:rotate-0 transition-transform duration-500 border-4 border-white">
+                <img
+                  src="https://newpageapi.losev.org.tr/losev/slider/944f2d90-b1c1-40f2-a764-af94e6dc5571.jpg"
+                  alt="LÖSEV İnci öğrencileri"
+                  className="w-48 h-36 object-cover"
+                />
+              </div>
+
+              {/* Small floating decorative icons */}
+              <div className="absolute -top-4 -right-4 z-30 animate-float">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-rose-400 to-pink-500 shadow-lg shadow-rose-400/30 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" /></svg>
                 </div>
               </div>
 
-              <div className="absolute bottom-12 left-4 animate-float-reverse delay-300">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 shadow-lg shadow-amber-400/30 flex items-center justify-center">
-                  <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" /></svg>
+              <div className="absolute top-1/2 -right-6 z-30 animate-float-reverse delay-300">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 shadow-lg shadow-amber-400/30 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" /></svg>
                 </div>
               </div>
 
-              <div className="absolute top-1/3 left-0 animate-float-slow delay-500">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 shadow-lg shadow-emerald-400/30 flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
-                </div>
-              </div>
-
-              <div className="absolute bottom-4 right-12 animate-float delay-200">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-400 to-indigo-500 shadow-lg shadow-purple-400/30 flex items-center justify-center">
-                  <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" /></svg>
-                </div>
-              </div>
-
-              {/* Center content */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-12">
-                <div className="text-6xl mb-3">🤝</div>
-                <div className="text-lg font-bold text-gray-800">Birlikte</div>
-                <div className="text-lg font-bold bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent">Daha Güçlü</div>
-                <p className="text-sm text-gray-500 mt-2">
-                  Her saat, bir çocuğun umuduna katkı
-                </p>
+              {/* Badge overlay */}
+              <div className="absolute -top-3 left-6 z-30 bg-white rounded-full px-4 py-2 shadow-lg border border-gray-100 flex items-center gap-2">
+                <span className="text-lg">🎓</span>
+                <span className="text-xs font-bold text-gray-700">LÖSEV İncileri</span>
               </div>
             </div>
           </div>
@@ -220,6 +220,25 @@ export default function Home() {
             <div ref={stat4.ref}>
               <div className="text-4xl sm:text-5xl font-extrabold">{stat4.count}</div>
               <div className="mt-2 text-sm sm:text-base text-blue-100 font-medium">İl Genelinde</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ====================== LOSEV INCI BANNER ====================== */}
+      <section className="py-12 bg-gradient-to-r from-primary-50 via-blue-50 to-purple-50">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="relative rounded-2xl bg-white/80 backdrop-blur border border-primary-100 p-8 md:p-10 flex flex-col md:flex-row items-center gap-6 shadow-sm">
+            <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-blue-600 flex items-center justify-center shadow-lg">
+              <span className="text-3xl">💎</span>
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-1">LÖSEV İncileri Projesi</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Geleceğin duyarlı bireylerini yetiştirmek için küçük yaşlardan itibaren çocuklara ve gençlere
+                dokunan uzun soluklu bir iyilik yolculuğu. LÖSEV İnci öğrencileri, gönüllülük çalışmalarıyla
+                topluma değer katıyor.
+              </p>
             </div>
           </div>
         </div>
@@ -478,7 +497,12 @@ export default function Home() {
 
       {/* ====================== CTA ====================== */}
       <section className="relative py-20 lg:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-600 via-blue-600 to-indigo-700" />
+        <img
+          src="https://newpageapi.losev.org.tr/losev/slider/944f2d90-b1c1-40f2-a764-af94e6dc5571.jpg"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-900/90 via-blue-800/85 to-indigo-900/90" />
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-white/20 blur-3xl" />
           <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-white/10 blur-3xl" />
@@ -487,13 +511,13 @@ export default function Home() {
         <div className="relative max-w-3xl mx-auto px-6 text-center">
           <div className="text-5xl mb-6">🌟</div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-            Sen de bu hikayenin
+            Her adımınız, yeni bir
             <br />
-            bir parçası ol
+            hayatın başlangıcı olsun
           </h2>
           <p className="mt-5 text-lg text-blue-100 max-w-xl mx-auto leading-relaxed">
-            Her bir gönüllülük saati, lösemili bir çocuğun hayatına dokunuyor.
-            Hemen kaydol, fark yaratmaya başla.
+            10 milyonuncu gönüllümüz ol! Her bir gönüllülük saati,
+            lösemili bir çocuğun hayatına dokunuyor. Hemen kaydol, fark yaratmaya başla.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
