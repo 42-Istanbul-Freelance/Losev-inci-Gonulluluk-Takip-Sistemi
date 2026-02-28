@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("STUDENT") // STUDENT | TEACHER | ADMIN
+  phone     String?
+  tcKimlik  String?
+  createdAt DateTime @default(now())
+
+  student Student?
+  teacher Teacher?
+}
+
+model School {
+  id       String    @id @default(cuid())
+  name     String
+  city     String
+  district String
+  students Student[]
+  teachers Teacher[]
+}
+
+model Student {
+  id            String     @id @default(cuid())
+  userId        String     @unique
+  user          User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  schoolId      String
+  school        School     @relation(fields: [schoolId], references: [id])
+  grade         String
+  coordinatorId String?
+  coordinator   Teacher?   @relation(fields: [coordinatorId], references: [id])
+  targetHours   Int        @default(30)
+  totalHours    Float      @default(0)
+  badgeLevel    String     @default("NONE") // NONE | BRONZE | SILVER | GOLD | PLATINUM
+  activities    Activity[]
+}
+
+model Teacher {
+  id       String    @id @default(cuid())
+  userId   String    @unique
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  schoolId String
+  school   School    @relation(fields: [schoolId], references: [id])
+  students Student[]
+}
+
+model Activity {
+  id          String   @id @default(cuid())
+  studentId   String
+  student     Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  date        DateTime
+  type        String   // SEMINER | STANT | BAGIS | KERMES | KAMUSAL_BILINCLENDIRME | SOSYAL_MEDYA | FARKINDALIK | DIGER
+  hours       Float
+  description String
+  photos      String   @default("[]") // JSON array of URLs
+  documents   String   @default("[]") // JSON array of URLs
+  status      String   @default("PENDING") // PENDING | APPROVED | REJECTED | REVISION_REQUESTED
+  reviewNote  String?
+  reviewedAt  DateTime?
+  reviewedBy  String?
+  createdAt   DateTime @default(now())
+}
