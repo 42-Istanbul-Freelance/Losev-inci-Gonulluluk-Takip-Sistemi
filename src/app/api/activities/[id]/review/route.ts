@@ -25,6 +25,21 @@ export async function PUT(
       );
     }
 
+    // Fetch activity and verify ownership for TEACHER role
+    const existingActivity = await prisma.activity.findUnique({
+      where: { id: params.id },
+      include: { student: { select: { coordinatorId: true } } },
+    });
+
+    if (!existingActivity) {
+      return NextResponse.json({ error: "Etkinlik bulunamadı" }, { status: 404 });
+    }
+
+    // Teachers can only review activities of students they coordinate
+    if (session.user.role === "TEACHER" && existingActivity.student.coordinatorId !== session.user.teacherId) {
+      return NextResponse.json({ error: "Bu etkinliği inceleme yetkiniz yok" }, { status: 403 });
+    }
+
     const activity = await prisma.activity.update({
       where: { id: params.id },
       data: {

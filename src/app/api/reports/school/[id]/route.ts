@@ -13,6 +13,15 @@ export async function GET(
       return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
     }
 
+    // Only TEACHER (own school) and ADMIN can access school reports
+    if (session.user.role === "STUDENT") {
+      return NextResponse.json({ error: "Bu rapora erişim yetkiniz yok" }, { status: 403 });
+    }
+
+    if (session.user.role === "TEACHER" && session.user.schoolId !== params.id) {
+      return NextResponse.json({ error: "Yalnızca kendi okulunuzun raporuna erişebilirsiniz" }, { status: 403 });
+    }
+
     const school = await prisma.school.findUnique({
       where: { id: params.id },
       include: {

@@ -19,7 +19,9 @@ export const activitySchema = z.object({
   date: z.string().min(1, "Tarih zorunlu"),
   type: z.string().min(1, "Etkinlik türü zorunlu"),
   hours: z.number().min(0.5, "En az 0.5 saat").max(24, "En fazla 24 saat"),
-  description: z.string().min(10, "Açıklama en az 10 karakter olmalı"),
+  description: z.string().min(10, "Açıklama en az 10 karakter olmalı").max(2000, "Açıklama en fazla 2000 karakter olmalı"),
+  photos: z.array(z.string().url()).max(10).optional().default([]),
+  documents: z.array(z.string().url()).max(5).optional().default([]),
 });
 
 export const profileSchema = z.object({

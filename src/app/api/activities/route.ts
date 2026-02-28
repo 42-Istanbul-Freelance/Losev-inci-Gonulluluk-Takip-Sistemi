@@ -73,8 +73,8 @@ export async function POST(req: NextRequest) {
         type: parsed.data.type,
         hours: parsed.data.hours,
         description: parsed.data.description,
-        photos: body.photos || "[]",
-        documents: body.documents || "[]",
+        photos: JSON.stringify(parsed.data.photos),
+        documents: JSON.stringify(parsed.data.documents),
       },
     });
 

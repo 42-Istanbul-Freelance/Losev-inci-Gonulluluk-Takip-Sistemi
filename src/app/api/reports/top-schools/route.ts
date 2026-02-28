@@ -10,6 +10,10 @@ export async function GET() {
       return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
     }
 
+    if (session.user.role !== "ADMIN") {
+      return NextResponse.json({ error: "Bu rapora erişim yetkiniz yok" }, { status: 403 });
+    }
+
     const schools = await prisma.school.findMany({
       include: {
         students: {
@@ -30,10 +34,10 @@ export async function GET() {
         avgHours:
           s._count.students > 0
             ? Math.round(
-                (s.students.reduce((sum, st) => sum + st.totalHours, 0) /
-                  s._count.students) *
-                  10
-              ) / 10
+              (s.students.reduce((sum, st) => sum + st.totalHours, 0) /
+                s._count.students) *
+              10
+            ) / 10
             : 0,
       }))
       .sort((a, b) => b.totalHours - a.totalHours)

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { profileSchema } from "@/lib/validators";
 
 export async function GET() {
   try {
@@ -42,12 +43,20 @@ export async function PUT(req: NextRequest) {
     }
 
     const body = await req.json();
+    const parsed = profileSchema.safeParse(body);
+
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: parsed.error.errors[0].message },
+        { status: 400 }
+      );
+    }
 
     await prisma.user.update({
       where: { id: session.user.id },
       data: {
-        name: body.name,
-        phone: body.phone,
+        name: parsed.data.name,
+        phone: parsed.data.phone,
       },
     });
 
@@ -55,8 +64,8 @@ export async function PUT(req: NextRequest) {
       await prisma.student.update({
         where: { id: session.user.studentId },
         data: {
-          grade: body.grade,
-          targetHours: body.targetHours ? Number(body.targetHours) : undefined,
+          grade: parsed.data.grade,
+          targetHours: parsed.data.targetHours,
         },
       });
     }
