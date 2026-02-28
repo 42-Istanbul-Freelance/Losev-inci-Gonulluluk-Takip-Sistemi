@@ -1,1 +1,1 @@
-# L-sev-nci-G-n-ll-l-k-Takip-Sistemi
+# Lösev-İnci-Gönüllülük-Takip-Sistemi
