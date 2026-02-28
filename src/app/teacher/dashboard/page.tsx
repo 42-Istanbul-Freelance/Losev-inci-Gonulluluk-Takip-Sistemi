@@ -58,13 +58,16 @@ export default function TeacherDashboard() {
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white/60 backdrop-blur-md rounded-3xl p-6 border border-white shadow-sm">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Öğretmen Paneli</h1>
-          <p className="text-gray-500 mt-1">Okul bazlı gönüllülük takibi</p>
+          <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">Öğretmen <span className="text-[#E30613]">Paneli</span></h1>
+          <p className="text-gray-500 mt-2 font-medium">Okul bazlı gönüllülük takibi</p>
         </div>
         {pending.length > 0 && (
-          <Link href="/teacher/activities" className="btn-primary">
+          <Link
+            href="/teacher/activities"
+            className="rounded-full bg-amber-500 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-amber-900/20 hover:bg-amber-600 hover:-translate-y-0.5 transition-all w-full sm:w-auto text-center animate-pulse-slow"
+          >
             {pending.length} Onay Bekliyor
           </Link>
         )}
@@ -116,35 +119,40 @@ export default function TeacherDashboard() {
       </div>
 
       {/* Top students */}
-      <div className="card">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-gray-900">En Aktif Öğrenciler</h3>
-          <Link href="/teacher/students" className="text-sm text-primary-600 hover:text-primary-500 font-medium">
+      <div className="bg-white/95 backdrop-blur-xl border border-gray-100 rounded-2xl p-6 shadow-sm overflow-hidden relative">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 pb-4 border-b border-gray-100 gap-4">
+          <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+            <svg className="w-5 h-5 text-primary-500" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+            </svg>
+            En Aktif Öğrenciler
+          </h3>
+          <Link href="/teacher/students" className="text-sm font-bold text-primary-600 hover:text-primary-700 bg-primary-50 px-4 py-1.5 rounded-full transition-colors shrink-0">
             Tümünü Gör
           </Link>
         </div>
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto -mx-6 px-6 sm:mx-0 sm:px-0">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gray-100">
-                <th className="text-left py-3 px-2 font-medium text-gray-500">Sıra</th>
-                <th className="text-left py-3 px-2 font-medium text-gray-500">Öğrenci</th>
-                <th className="text-left py-3 px-2 font-medium text-gray-500">Sınıf</th>
-                <th className="text-right py-3 px-2 font-medium text-gray-500">Saat</th>
-                <th className="text-right py-3 px-2 font-medium text-gray-500">Rozet</th>
+                <th className="text-left py-3 px-4 font-bold text-gray-400 uppercase tracking-widest text-xs">Sıra</th>
+                <th className="text-left py-3 px-4 font-bold text-gray-400 uppercase tracking-widest text-xs">Öğrenci</th>
+                <th className="text-left py-3 px-4 font-bold text-gray-400 uppercase tracking-widest text-xs">Sınıf</th>
+                <th className="text-right py-3 px-4 font-bold text-gray-400 uppercase tracking-widest text-xs">Saat</th>
+                <th className="text-right py-3 px-4 font-bold text-gray-400 uppercase tracking-widest text-xs">Rozet</th>
               </tr>
             </thead>
             <tbody>
               {students.slice(0, 5).map((s, i) => (
-                <tr key={s.id} className="border-b border-gray-50">
-                  <td className="py-3 px-2 text-gray-400">{i + 1}</td>
-                  <td className="py-3 px-2 font-medium text-gray-900">{s.user.name}</td>
-                  <td className="py-3 px-2 text-gray-600">{s.grade}. Sınıf</td>
-                  <td className="py-3 px-2 text-right font-medium text-primary-600">
+                <tr key={s.id} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors group">
+                  <td className="py-4 px-4 font-medium text-gray-400 group-hover:text-primary-600 transition-colors">#{i + 1}</td>
+                  <td className="py-4 px-4 font-bold text-gray-900">{s.user.name}</td>
+                  <td className="py-4 px-4 font-medium text-gray-600">{s.grade}. Sınıf</td>
+                  <td className="py-4 px-4 text-right font-black text-primary-600">
                     {s.totalHours.toFixed(1)}
                   </td>
-                  <td className="py-3 px-2 text-right">
-                    <span className="text-xs font-medium">
+                  <td className="py-4 px-4 text-right">
+                    <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider ${s.badgeLevel !== "NONE" ? 'bg-primary-50 text-primary-700' : 'text-gray-400'}`}>
                       {s.badgeLevel !== "NONE" ? s.badgeLevel : "-"}
                     </span>
                   </td>
@@ -152,6 +160,9 @@ export default function TeacherDashboard() {
               ))}
             </tbody>
           </table>
+          {students.length === 0 && (
+            <div className="text-center py-10 text-gray-500 font-medium">Kayıtlı öğrenci verisi bulunmamaktadır.</div>
+          )}
         </div>
       </div>
     </div>

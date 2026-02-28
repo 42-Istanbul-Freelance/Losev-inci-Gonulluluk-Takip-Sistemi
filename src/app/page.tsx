@@ -86,16 +86,16 @@ export default function Home() {
               </span>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-3">
             <Link
               href="/auth/login"
-              className="rounded-full border border-gray-200 bg-white/80 backdrop-blur px-5 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-all"
+              className="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-[#E30613] transition-colors"
             >
               Giriş Yap
             </Link>
             <Link
               href="/auth/register"
-              className="rounded-full bg-primary-600 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-primary-600/25 hover:bg-primary-700 transition-all"
+              className="rounded-full bg-[#E30613] px-5 py-2 text-sm font-bold text-white shadow-md shadow-red-900/20 hover:bg-red-700 hover:shadow-red-900/40 transition-all"
             >
               Kayıt Ol
             </Link>
@@ -147,24 +147,6 @@ export default function Home() {
                 Giriş Yap
               </Link>
             </div>
-
-            <div className="mt-14 flex items-center justify-center gap-4 text-sm font-medium text-gray-300 bg-black/30 backdrop-blur rounded-full pl-2 pr-6 py-2 border border-white/10">
-              <div className="flex -space-x-3">
-                {["bg-primary-500", "bg-emerald-500", "bg-amber-500", "bg-rose-500"].map((c, i) => (
-                  <div key={i} className={`w-10 h-10 rounded-full ${c} border-2 border-gray-900 flex items-center justify-center text-white text-xs font-bold shadow-md`}>
-                    {["AV", "ZK", "EŞ", "SÖ"][i]}
-                  </div>
-                ))}
-              </div>
-              <span>250+ İnci öğrencisi aramıza katıldı</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-          <div className="w-10 h-14 rounded-full border-2 border-white/30 flex items-start justify-center p-2 bg-black/20 backdrop-blur">
-            <div className="w-1.5 h-3 bg-white rounded-full animate-pulse" />
           </div>
         </div>
       </section>

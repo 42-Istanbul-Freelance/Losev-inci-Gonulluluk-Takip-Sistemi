@@ -36,9 +36,11 @@ export default function AdminDashboard() {
 
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">Genel Merkez Paneli</h1>
-        <p className="text-gray-500 mt-1">Türkiye geneli gönüllülük takibi</p>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white/60 backdrop-blur-md rounded-3xl p-6 border border-white shadow-sm">
+        <div>
+          <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">Genel Merkez <span className="text-[#E30613]">Paneli</span></h1>
+          <p className="text-gray-500 mt-2 font-medium">Türkiye geneli gönüllülük takibi</p>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -88,60 +90,74 @@ export default function AdminDashboard() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Top 10 Students */}
-        <div className="card">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-900">En Aktif 10 Öğrenci</h3>
-            <Link href="/admin/students" className="text-sm text-primary-600 hover:text-primary-500 font-medium">
+        <div className="bg-white/95 backdrop-blur-xl border border-gray-100 rounded-2xl p-6 shadow-sm overflow-hidden relative">
+          <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+            <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+              <span className="text-xl">🏆</span>
+              En Aktif 10 Öğrenci
+            </h3>
+            <Link href="/admin/students" className="text-sm font-bold text-primary-600 hover:text-primary-700 bg-primary-50 px-4 py-1.5 rounded-full transition-colors">
               Tümü
             </Link>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-3">
             {topStudents.slice(0, 10).map((s, i) => (
-              <div key={s.id} className="flex items-center justify-between py-2 border-b border-gray-50 last:border-0">
-                <div className="flex items-center gap-3">
-                  <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                    i < 3 ? "bg-primary-100 text-primary-700" : "bg-gray-100 text-gray-500"
-                  }`}>
+              <div key={s.id} className="group flex items-center justify-between p-3 rounded-xl border border-transparent hover:border-primary-100 hover:bg-primary-50/50 transition-colors">
+                <div className="flex items-center gap-4">
+                  <span className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-extrabold shadow-sm ${i === 0 ? "bg-amber-400 text-white shadow-amber-400/50" :
+                      i === 1 ? "bg-gray-300 text-gray-700 shadow-gray-400/50" :
+                        i === 2 ? "bg-amber-700 text-white shadow-amber-800/50" : "bg-gray-100 text-gray-500"
+                    }`}>
                     {i + 1}
                   </span>
                   <div>
-                    <p className="text-sm font-medium text-gray-900">{s.user.name}</p>
-                    <p className="text-xs text-gray-500">{s.school?.name} - {s.school?.city}</p>
+                    <p className="text-sm font-bold text-gray-900 group-hover:text-primary-700 transition-colors">{s.user.name}</p>
+                    <p className="text-xs font-medium text-gray-500">{s.school?.name} <span className="mx-1 opacity-50">•</span> {s.school?.city}</p>
                   </div>
                 </div>
-                <span className="text-sm font-semibold text-primary-600">
-                  {formatHours(s.totalHours)} saat
-                </span>
+                <div className="flex flex-col items-end">
+                  <span className="text-base font-black text-primary-600">
+                    {formatHours(s.totalHours)}
+                  </span>
+                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">saat</span>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
         {/* Top 10 Schools */}
-        <div className="card">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-900">En Aktif 10 Okul</h3>
-            <Link href="/admin/schools" className="text-sm text-primary-600 hover:text-primary-500 font-medium">
+        <div className="bg-white/95 backdrop-blur-xl border border-gray-100 rounded-2xl p-6 shadow-sm overflow-hidden relative">
+          <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+            <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+              <span className="text-xl">🏫</span>
+              En Aktif 10 Okul
+            </h3>
+            <Link href="/admin/schools" className="text-sm font-bold text-primary-600 hover:text-primary-700 bg-primary-50 px-4 py-1.5 rounded-full transition-colors">
               Tümü
             </Link>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-3">
             {topSchools.slice(0, 10).map((s, i) => (
-              <div key={s.id} className="flex items-center justify-between py-2 border-b border-gray-50 last:border-0">
-                <div className="flex items-center gap-3">
-                  <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                    i < 3 ? "bg-primary-100 text-primary-700" : "bg-gray-100 text-gray-500"
-                  }`}>
+              <div key={s.id} className="group flex items-center justify-between p-3 rounded-xl border border-transparent hover:border-emerald-100 hover:bg-emerald-50/50 transition-colors">
+                <div className="flex items-center gap-4">
+                  <span className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-extrabold shadow-sm ${i === 0 ? "bg-emerald-500 text-white shadow-emerald-500/50" :
+                      i === 1 ? "bg-emerald-400 text-white shadow-emerald-400/50" :
+                        i === 2 ? "bg-emerald-300 text-white shadow-emerald-300/50" : "bg-gray-100 text-gray-500"
+                    }`}>
                     {i + 1}
                   </span>
                   <div>
-                    <p className="text-sm font-medium text-gray-900">{s.name}</p>
-                    <p className="text-xs text-gray-500">{s.city}/{s.district} - {s.students} öğrenci</p>
+                    <p className="text-sm font-bold text-gray-900 group-hover:text-emerald-700 transition-colors">{s.name}</p>
+                    <p className="text-xs font-medium text-gray-500">{s.city}/{s.district} <span className="mx-1 opacity-50">•</span> {s.students} öğrenci</p>
                   </div>
                 </div>
-                <span className="text-sm font-semibold text-primary-600">
-                  {formatHours(s.totalHours)} saat
-                </span>
+                <div className="flex flex-col items-end">
+                  <span className="text-base font-black text-emerald-600">
+                    {formatHours(s.totalHours)}
+                  </span>
+                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">saat</span>
+                </div>
               </div>
             ))}
           </div>

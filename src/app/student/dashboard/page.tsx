@@ -76,16 +76,19 @@ export default function StudentDashboard() {
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white/60 backdrop-blur-md rounded-3xl p-6 border border-white shadow-sm">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">
-            Hoş geldin, {session?.user?.name?.split(" ")[0]}!
+          <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">
+            Hoş geldin, <span className="text-[#E30613]">{session?.user?.name?.split(" ")[0]}</span>!
           </h1>
-          <p className="text-gray-500 mt-1">
-            {student?.school?.name} - {student?.grade}. Sınıf
+          <p className="text-gray-500 mt-2 font-medium">
+            {student?.school?.name} <span className="mx-2 text-gray-300">|</span> {student?.grade}. Sınıf
           </p>
         </div>
-        <Link href="/student/activities/new" className="btn-primary">
+        <Link
+          href="/student/activities/new"
+          className="rounded-full bg-[#E30613] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-red-900/20 hover:bg-red-700 hover:-translate-y-0.5 transition-all w-full sm:w-auto text-center"
+        >
           + Etkinlik Ekle
         </Link>
       </div>
@@ -135,31 +138,43 @@ export default function StudentDashboard() {
 
       {/* Progress bar and badge */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 card">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Hedef İlerlemesi</h3>
-          <div className="flex items-center gap-6">
-            <div className="flex-1">
-              <div className="flex justify-between text-sm mb-2">
-                <span className="text-gray-600">{totalHours.toFixed(1)} / {targetHours} saat</span>
-                <span className="font-medium text-primary-600">{progress.toFixed(0)}%</span>
+        <div className="lg:col-span-2 bg-white/95 backdrop-blur-xl border border-gray-100 rounded-2xl p-6 md:p-8 shadow-sm">
+          <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+            <svg className="w-6 h-6 text-primary-500" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
+            </svg>
+            Hedef İlerlemesi
+          </h3>
+          <div className="flex flex-col gap-4">
+            <div className="flex justify-between items-end border-b border-gray-100 pb-4 mb-2">
+              <div>
+                <span className="block text-4xl font-black text-gray-900">{totalHours.toFixed(1)} <span className="text-lg text-gray-400 font-medium">/ {targetHours} saat</span></span>
               </div>
-              <div className="h-4 bg-gray-100 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-gradient-to-r from-primary-500 to-primary-600 rounded-full transition-all duration-500"
-                  style={{ width: `${progress}%` }}
-                />
-              </div>
-              {nextBadge && (
-                <p className="mt-3 text-sm text-gray-500">
-                  Sonraki rozet: <span className="font-medium">{BADGE_LABELS[nextBadge.next]}</span>
-                  {" "}({nextBadge.hoursNeeded.toFixed(1)} saat kaldı)
-                </p>
-              )}
+              <span className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-blue-600">{progress.toFixed(0)}%</span>
             </div>
+
+            <div className="h-5 bg-gray-100 rounded-full overflow-hidden shadow-inner relative">
+              <div
+                className="h-full bg-gradient-to-r from-primary-500 via-blue-500 to-purple-500 rounded-full transition-all duration-1000 ease-out relative"
+                style={{ width: `${progress}%` }}
+              >
+                <div className="absolute inset-0 bg-white/20 w-full h-full animate-[shimmer_2s_infinite] -skew-x-12 translate-x-[-100%]" />
+              </div>
+            </div>
+
+            {nextBadge && (
+              <p className="mt-2 text-sm text-gray-600 font-medium flex items-center gap-2 bg-gray-50 rounded-lg p-3">
+                <span className="text-amber-500">⭐</span>
+                Sonraki rozet: <strong className="text-gray-900 px-1">{BADGE_LABELS[nextBadge.next]}</strong>
+                <span className="text-primary-600">({nextBadge.hoursNeeded.toFixed(1)} saat kaldı)</span>
+              </p>
+            )}
           </div>
         </div>
 
-        <div className="card flex items-center justify-center">
+        <div className="bg-white/95 backdrop-blur-xl border border-gray-100 rounded-2xl p-6 shadow-sm flex flex-col items-center justify-center relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-amber-400/10 rounded-full blur-3xl group-hover:bg-amber-400/20 transition-colors" />
+          <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Gönüllülük Rozeti</p>
           <BadgeDisplay level={badgeLevel} size="lg" />
         </div>
       </div>
@@ -167,21 +182,28 @@ export default function StudentDashboard() {
       <HoursChart data={monthlyChartData} title="Aylık Gönüllülük Saatleri" />
 
       {/* Recent activities */}
-      <div>
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-gray-900">Son Etkinlikler</h3>
-          <Link href="/student/activities" className="text-sm text-primary-600 hover:text-primary-500 font-medium">
+      <div className="relative">
+        <div className="flex items-end justify-between mb-6 pb-2 border-b border-gray-100">
+          <h3 className="text-xl font-bold text-gray-900">Son Etkinlikler</h3>
+          <Link href="/student/activities" className="text-sm font-bold text-primary-600 hover:text-primary-700 bg-primary-50 px-4 py-1.5 rounded-full transition-colors">
             Tümünü Gör
           </Link>
         </div>
-        <div className="space-y-3">
+        <div className="space-y-4">
           {activities.slice(0, 5).map((activity) => (
-            <ActivityCard key={activity.id} activity={activity} />
+            <div key={activity.id} className="transition-transform hover:-translate-y-1">
+              <ActivityCard activity={activity} />
+            </div>
           ))}
           {activities.length === 0 && (
-            <div className="card text-center py-12">
-              <p className="text-gray-500">Henüz etkinlik eklemediniz.</p>
-              <Link href="/student/activities/new" className="btn-primary mt-4 inline-flex">
+            <div className="bg-white/50 backdrop-blur border border-dashed border-gray-300 rounded-2xl text-center py-16">
+              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+              </div>
+              <p className="text-gray-500 font-medium mb-4">Henüz hiç etkinlik eklemedin.</p>
+              <Link href="/student/activities/new" className="rounded-full bg-[#E30613] px-6 py-2.5 text-sm font-bold text-white shadow-md hover:bg-red-700 transition-colors inline-block">
                 İlk Etkinliğini Ekle
               </Link>
             </div>
